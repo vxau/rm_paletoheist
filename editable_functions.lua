@@ -34,15 +34,16 @@ end
 getClosestPlayer = function(coords, maxDistance)
     local ped = PlayerPedId()
     coords = coords and (type(coords) == 'table' and vec3(coords.x, coords.y, coords.z) or coords) or GetEntityCoords(ped)
-    local closestPlayers = getClosestPlayers(coords, maxDistance)
+    local maxDistance = maxDistance or 5
+    local players = GetActivePlayers()
     local closestDistance, closestPlayer = false
-    for i = 1, #closestPlayers, 1 do
-        local p = closestPlayers[i]
+    for i = 1, #players, 1 do
+        local p = players[i]
         if p and p ~= PlayerId() then
             local target = GetPlayerPed(p)
             local targetCoords = GetEntityCoords(target)
             local distance = #(targetCoords - coords)
-            if not closestDistance or closestDistance > distance then
+            if maxDistance >= distance and (not closestDistance or closestDistance > distance) then
                 closestPlayer = p
                 closestDistance = distance
             end
