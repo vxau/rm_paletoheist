@@ -1,23 +1,26 @@
+local dispatchJobSet = {}
+for _, jobName in pairs(Config['PaletoHeist']['dispatchJobs']) do
+    dispatchJobSet[jobName] = true
+end
+
 RegisterServerEvent('paletoheist:server:policeAlert')
 AddEventHandler('paletoheist:server:policeAlert', function(coords)
     if Config['PaletoHeist']['framework']['name'] == 'ESX' then
         local players = ESX.GetPlayers()
         for i = 1, #players do
             local player = ESX.GetPlayerFromId(players[i])
-            for k, v in pairs(Config['PaletoHeist']['dispatchJobs']) do
-                if player['job']['name'] == v then
-                    TriggerClientEvent('paletoheist:client:policeAlert', players[i], coords)
-                end
+            local playerJobName = player['job']['name']
+            if dispatchJobSet[playerJobName] then
+                TriggerClientEvent('paletoheist:client:policeAlert', players[i], coords)
             end
         end
     elseif Config['PaletoHeist']['framework']['name'] == 'QB' then
         local players = QBCore.Functions.GetPlayers()
         for i = 1, #players do
             local player = QBCore.Functions.GetPlayer(players[i])
-            for k, v in pairs(Config['PaletoHeist']['dispatchJobs']) do
-                if player.PlayerData.job.name == v then
-                    TriggerClientEvent('paletoheist:client:policeAlert', players[i], coords)
-                end
+            local playerJobName = player.PlayerData.job.name
+            if dispatchJobSet[playerJobName] then
+                TriggerClientEvent('paletoheist:client:policeAlert', players[i], coords)
             end
         end
     end
