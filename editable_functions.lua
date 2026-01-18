@@ -21,7 +21,8 @@ getClosestPlayers = function(coords, maxDistance)
     coords = coords and (type(coords) == 'table' and vec3(coords.x, coords.y, coords.z) or coords) or GetEntityCoords(ped)
     local maxDistance = maxDistance or 5
     local closePlayers = {}
-    for _, player in pairs(players) do
+    for i = 1, #players do
+        local player = players[i]
         local target = GetPlayerPed(player)
         local targetCoords = GetEntityCoords(target)
         if maxDistance >= #(targetCoords - coords) then
