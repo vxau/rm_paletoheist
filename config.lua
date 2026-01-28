@@ -10,7 +10,7 @@ Config['PaletoHeist'] = {
     ['bagClothesID'] = 45,
     ['buyerFinishScene'] = true,
     ["dispatch"] = "ps-dispatch", -- cd_dispatch | qs-dispatch | ps-dispatch | rcore_dispatch | default
-    ['requiredPoliceCount'] = 3, -- required police count for start heist
+    ['requiredPoliceCount'] = 5, -- required police count for start heist
     ['dispatchJobs'] = {'police'},
     ['nextRob'] = 7200, -- Seconds for next heist.
     ['requiredItems'] = { -- Add this items to database or shared. Don't change the order, you can change the item names.
@@ -21,9 +21,9 @@ Config['PaletoHeist'] = {
         'hack_usb'
     },
     ['rewardItems'] = { -- Add this items to database or shared. Don't change the order, you can change the item names. You can add more items for lockboxes.
-        {itemName = 'goldbar1', count = 1, sellPrice = 50000}, -- For trollys/lockboxes.
+        {itemName = 'paleto_goldbar', count = 1, sellPrice = 50000}, -- For trollys/lockboxes.
         {itemName = 'paleto_diamond', count = 1, sellPrice = 50000}, -- For trollys/lockboxes.
-        {itemName = 'coke_pooch', count = 1, sellPrice = 50000}, -- For trollys/lockboxes.
+        {itemName = 'paleto_coke_pooch', count = 1, sellPrice = 50000}, -- For trollys/lockboxes.
     },
     ['rewardMoneys'] = {
         ['trollys'] = function()
@@ -46,7 +46,7 @@ Config['PaletoHeist'] = {
         status = false,
         itemName = 'cash'
     },
-    ['black_money'] = false,  -- If change true, all moneys will convert to black. QBCore players can change itemName.
+    ['black_money'] = true,  -- If change true, all moneys will convert to black. QBCore players can change itemName.
     ['finishHeist'] = { -- Heist finish coords.
         buyerPos = vector3(100.328, -2706.3, 5.00362)
     },

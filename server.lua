@@ -198,8 +198,7 @@ AddEventHandler('paletoheist:server:rewardItem', function(item, count, type)
                         local info = {
                             worth = count
                         }
-                        player.Functions.AddItem('markedbills', 1, false, info)
-                        TriggerClientEvent('inventory:client:ItemBox', src, QBCore.Shared.Items['markedbills'], "add") 
+                        player.Functions.AddItem('black_money', count)
                         discordLog(player.PlayerData.name ..  ' - ' .. player.PlayerData.license, ' Gain ' .. count .. '$ on Paleto Heist!')
                     else
                         player.Functions.AddMoney('cash', count)
@@ -241,7 +240,7 @@ AddEventHandler('paletoheist:server:sellRewardItems', function()
                 if playerItem.count >= 1 then
                     player.removeInventoryItem(v['itemName'], playerItem.count)
                     if Config['PaletoHeist']['black_money'] then
-                        player.addAccountMoney('black_money', playerItem.count * v['sellPrice'])
+                        player.addInventoryItem('black_money', playerItem.count * v['sellPrice'])
                     else
                         if Config['PaletoHeist']['moneyItem']['status'] then
                             player.addInventoryItem(Config['PaletoHeist']['moneyItem']['itemName'], playerItem.count * v['sellPrice'])
@@ -269,8 +268,7 @@ AddEventHandler('paletoheist:server:sellRewardItems', function()
                         local info = {
                             worth = playerItem.amount * v['sellPrice']
                         }
-                        player.Functions.AddItem('markedbills', 1, false, info)
-                        TriggerClientEvent('inventory:client:ItemBox', src, QBCore.Shared.Items['markedbills'], "add") 
+                        player.Functions.AddItem('black_money', playerItem.amount * v['sellPrice'])
                     else
                         player.Functions.AddMoney('cash', playerItem.amount * v['sellPrice'])
                     end
